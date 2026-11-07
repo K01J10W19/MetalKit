@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://metal-kit.ru/sitemap.xml

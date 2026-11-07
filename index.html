@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0e0a04" />
+    <!-- Fallback title; each page renders its own <title>/<meta> (React 19 hoists them into <head>) -->
+    <title>Custom Metal Structures in Moscow &amp; Region — METAL KIT</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&family=Unbounded:wght@500;700&display=swap" />
+    <!-- LCP: preload the hero image -->
+    <link rel="preload" as="image" type="image/webp" href="/images/hero-1200.webp"
+      imagesrcset="/images/hero-640.webp 640w, /images/hero-1200.webp 1200w"
+      imagesizes="100vw" fetchpriority="high" />
+  </head>
+  <body class="bg-background font-sans text-text antialiased">
+    <noscript>Please enable JavaScript to use this site.</noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

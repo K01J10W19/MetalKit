@@ -1,0 +1,281 @@
+@import 'tailwindcss';
+
+/*
+ * Design tokens from the METAL KIT design (Claude Design handoff).
+ * Spacing: Tailwind's default scale is 4px per unit — use EVEN steps only
+ * (2 = 8px, 4 = 16px, 6 = 24px, 8 = 32px …) to stay on the 8px grid.
+ */
+@theme static {
+  /* Viewport tiers (mobile-first): base < 640 · sm 640–1023 · lg 1024–1439 · 2xl ≥ 1440 */
+  --breakpoint-*: initial;
+  --breakpoint-sm: 40rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-2xl: 90rem;
+
+  --font-sans: 'Onest', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Unbounded', 'Onest', ui-sans-serif, system-ui, sans-serif; /* numerals only */
+
+  /* Primary — welding-spark amber (CTAs, accents, numerals) */
+  --color-primary: #f9b234;
+  --color-primary-50: #fff8eb;
+  --color-primary-100: #feecc7;
+  --color-primary-200: #fdd98a;
+  --color-primary-300: #fbc55a;
+  --color-primary-400: #f9b234;
+  --color-primary-500: #ee9a12;
+  --color-primary-600: #d1780c;
+  --color-primary-700: #ad560e;
+  --color-primary-800: #8c4313;
+  --color-primary-900: #733813;
+  --color-primary-ink: #935800; /* AA-contrast amber for text on cream */
+  /* Accent words on cream. Reference look; switch to #935800 (primary-ink) for WCAG AA contrast */
+  --color-accent-ink: #f9b234;
+
+  /* Secondary — forged steel / near-black (header, dark bands, footer) */
+  --color-secondary: #141414;
+  --color-secondary-50: #f6f6f6;
+  --color-secondary-100: #e7e7e7;
+  --color-secondary-200: #d1d1d1;
+  --color-secondary-300: #b0b0b0;
+  --color-secondary-400: #888888;
+  --color-secondary-500: #6d6d6d;
+  --color-secondary-600: #4a4a4a;
+  --color-secondary-700: #333333;
+  --color-secondary-800: #1f1f1f;
+  --color-secondary-900: #14100a;
+  --color-secondary-950: #0e0a04;
+
+  /* Backgrounds — warm cream paper */
+  --color-background: #fff2e2;
+  --color-background-soft: #fff8ef;
+
+  /* Surfaces */
+  --color-surface-pill: #1a1714; /* eyebrow pill */
+  --color-surface-image: #2a231a; /* dark image placeholder, dark button hover */
+  --color-surface-image-light: #ecd9bd; /* light image placeholder */
+  --color-surface-skeleton: #f1dfc4;
+
+  /* Text roles */
+  --color-text: #0e0a04;
+  --color-text-muted: #3a3128;
+  --color-text-subtle: #5c5145;
+  --color-text-inverse: #fff8ef;
+  --color-text-inverse-muted: #d9d0c4;
+  --color-text-inverse-lead: #e9dccb; /* page-hero lead */
+  --color-text-inverse-faint: #b9b0a3; /* footer meta */
+  --color-text-feature: #e6c48f; /* hero feature strip */
+  --color-text-placeholder: #958b7f;
+  --color-numeral-stroke: #857a68; /* outlined numerals (not `numeral`: that would collide with the --text-numeral size) */
+
+  /* Lines */
+  --color-line: #ecd3a8;
+  --color-line-strong: #c9ad84;
+  --color-line-dark: #403c36;
+  --color-line-field: #4e5056;
+
+  /* Form errors on dark bands */
+  --color-danger: #ff8a5c;
+  --color-danger-text: #ff9a6e;
+
+  /* Fluid type scale — clamp(min, preferred, max) */
+  --text-caption: 0.8125rem;
+  --text-caption--line-height: 1.4;
+  --text-small: 0.875rem;
+  --text-small--line-height: 1.5;
+  --text-body: 0.9375rem;
+  --text-body--line-height: 1.6;
+  --text-feature: clamp(0.75rem, 0.7rem + 0.25vw, 0.9375rem);
+  --text-feature--line-height: 1.3;
+  --text-feature--letter-spacing: 0.02em;
+  --text-tagline: clamp(0.8125rem, 0.75rem + 0.3vw, 1rem);
+  --text-tagline--line-height: 1.4;
+  --text-tagline--letter-spacing: 0.04em;
+  --text-lead: clamp(0.9375rem, 0.875rem + 0.3vw, 1.125rem);
+  --text-lead--line-height: 1.5;
+  --text-h5: clamp(1rem, 0.875rem + 0.3vw, 1.125rem);
+  --text-h5--line-height: 1.25;
+  --text-h4: clamp(1rem, 0.875rem + 0.4vw, 1.25rem);
+  --text-h4--line-height: 1.25;
+  --text-question: clamp(1.125rem, 0.75rem + 1.1vw, 1.75rem);
+  --text-question--line-height: 1.2;
+  --text-detail: clamp(1.125rem, 0.875rem + 0.8vw, 1.625rem);
+  --text-detail--line-height: 1.3;
+  --text-intro: clamp(1.25rem, 0.75rem + 1.2vw, 1.875rem);
+  --text-intro--line-height: 1.2;
+  --text-menu: clamp(1.25rem, 1rem + 2vw, 1.75rem);
+  --text-menu--line-height: 1.2;
+  --text-statement: clamp(1.25rem, 0.75rem + 1.5vw, 2rem);
+  --text-statement--line-height: 1.2;
+  --text-statement--letter-spacing: -0.01em;
+  --text-h3: clamp(1.75rem, 1rem + 2vw, 3rem);
+  --text-h3--line-height: 1.05;
+  --text-h3--letter-spacing: -0.02em;
+  --text-h2: clamp(2rem, 1rem + 3vw, 4rem);
+  --text-h2--line-height: 1.05;
+  --text-h2--letter-spacing: -0.02em;
+  --text-h1: clamp(2rem, 1.25rem + 3vw, 4.5rem);
+  --text-h1--line-height: 1.04;
+  --text-h1--letter-spacing: -0.02em;
+  --text-numeral-sm: 2.5rem;
+  --text-numeral-sm--line-height: 1;
+  --text-numeral: clamp(2rem, 1.25rem + 1.2vw, 2.75rem);
+  --text-numeral--line-height: 1;
+  --text-numeral-lg: clamp(2.5rem, 1.5rem + 2vw, 4rem);
+  --text-numeral-lg--line-height: 1;
+  --text-stat: clamp(5rem, 3rem + 8vw, 10rem);
+  --text-stat--line-height: 1;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-expo: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --shadow-glow: 0 8px 24px -8px rgb(249 178 52 / 0.7);
+  --shadow-glow-lg: 0 8px 32px -8px rgb(249 178 52 / 0.7);
+  --shadow-halo: 0 0 0 3px rgb(249 178 52 / 0.25);
+
+  --animate-fade-up: fade-up 600ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-page-out: page-out 250ms cubic-bezier(0.7, 0, 0.84, 0) forwards;
+  --animate-shimmer: shimmer 1.6s cubic-bezier(0.76, 0, 0.24, 1) infinite;
+  --animate-spinner: spin 700ms linear infinite;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes page-out {
+    from {
+      opacity: 1;
+      transform: none;
+    }
+    to {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+  }
+  @keyframes shimmer {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(100%);
+    }
+  }
+}
+
+/* Page container: fluid up to 1440px with 16→48px gutters */
+@utility shell {
+  width: 100%;
+  max-width: 90rem;
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 3.333vw, 3rem);
+}
+
+/* The design's ¼-width eyebrow column (lg+) and content aligned past it */
+@utility eyebrow-col {
+  flex: 0 0 100%;
+  @media (width >= 64rem) {
+    flex-basis: calc(25% - 0.75rem);
+  }
+}
+@utility offset-col {
+  @media (width >= 64rem) {
+    margin-inline-start: calc(25% + 0.25rem);
+  }
+}
+
+/* Outlined numerals */
+@utility hollow {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--color-numeral-stroke);
+}
+@utility hollow-primary {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--color-primary);
+}
+
+/* Photo overlays */
+@utility fade-hero {
+  background-image: linear-gradient(
+    180deg,
+    rgb(14 10 4 / 0.82) 0%,
+    rgb(14 10 4 / 0.3) 38%,
+    rgb(14 10 4 / 0.35) 62%,
+    #0e0a04 100%
+  );
+}
+@utility fade-band {
+  background-image: linear-gradient(90deg, rgb(14 10 4 / 0.1) 0%, rgb(14 10 4 / 0.4) 60%, #0e0a04 100%);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    text-rendering: optimizeLegibility;
+  }
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  ::selection {
+    background-color: var(--color-primary);
+    color: var(--color-secondary-950);
+  }
+
+  /* Brand scrollbar: amber thumb on forged-steel track */
+  @supports not selector(::-webkit-scrollbar) {
+    html {
+      scrollbar-color: var(--color-primary) var(--color-secondary-950);
+      scrollbar-width: thin;
+    }
+  }
+  ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-secondary-950);
+    border-left: 1px solid var(--color-line-dark);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border: 3px solid var(--color-secondary-950);
+    border-radius: 0;
+    min-height: 48px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary-300);
+    border-width: 2px;
+  }
+  ::-webkit-scrollbar-thumb:active {
+    background: var(--color-primary-500);
+    border-width: 2px;
+  }
+  ::-webkit-scrollbar-corner {
+    background: var(--color-secondary-950);
+  }
+
+  /* Durations collapse instead of being removed, so animationend still fires (route swaps rely on it) */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
